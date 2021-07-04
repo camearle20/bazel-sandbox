@@ -1,0 +1,3 @@
+build --incompatible_enable_cc_toolchain_resolution
+
+build:athena --platforms=//build_tools/platforms:athena

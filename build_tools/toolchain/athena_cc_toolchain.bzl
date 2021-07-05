@@ -103,3 +103,11 @@ athena_cc_toolchain_win32_config = rule(
     },
     provides = [CcToolchainConfigInfo]
 )
+
+athena_cc_toolchain_macos64_config = rule(
+    implementation = _impl,
+    attrs = {
+        "_build_os": attr.string(default="macos64")
+    },
+    provides = [CcToolchainConfigInfo]
+)

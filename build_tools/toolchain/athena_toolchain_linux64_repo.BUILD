@@ -1,3 +1,9 @@
+# This file is copied to the directory where the ahtena linux64 toolchain is downloaded automatically by Bazel.
+# It acts as the BUILD file in that directory, and it exists in its own repository.
+# Thus, any reference to the root repository of this project must be done fully qualified (i.e. with "@"),
+# as leaving off the repo label will reference the local repo which in this case would be the downloaded files.
+
+# Load our toolchain definitions
 load("@//:build_tools/toolchain/athena_cc_toolchain.bzl", "athena_cc_toolchain_linux64_config")
 
 athena_cc_toolchain_linux64_config(
@@ -6,7 +12,7 @@ athena_cc_toolchain_linux64_config(
 
 filegroup(
     name = "athena-cc-toolchain-linux64-files",
-    srcs = glob(["frc2021/roborio/**/*"])
+    srcs = glob(["frc2021/roborio/**/*"]),
 )
 
 cc_toolchain(
@@ -23,6 +29,7 @@ cc_toolchain(
 
 toolchain(
     name = "athena-cc-toolchain-linux64",
+    exec_compatible_with = ["@platforms//os:linux"],
     target_compatible_with = ["@//build_tools/platforms:roborio"],
     toolchain = ":athena-cc-toolchain-linux64-def",
     toolchain_type = "@bazel_tools//tools/cpp:toolchain_type",

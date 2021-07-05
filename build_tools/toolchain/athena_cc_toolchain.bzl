@@ -75,26 +75,31 @@ def _impl(ctx):
 
     return cc_common.create_cc_toolchain_config_info(
         ctx = ctx,
-        # These appear to not be needed with sysroot but we may need them in the future?
-        #cxx_builtin_include_directories = [
-        #    "external/athena_toolchain_linux64/frc2021/roborio/arm-frc2021-linux-gnueabi/usr/include", 
-        #    "external/athena_toolchain_linux64/frc2021/roborio/arm-frc2021-linux-gnueabi/usr/lib/gcc/arm-frc2021-linux-gnueabi/7.3.0/include"
-        #],
-        builtin_sysroot = "external/athena_toolchain_linux64/frc2021/roborio/arm-frc2021-linux-gnueabi",
-        toolchain_identifier = "athena_cc_toolchain_linux64",
-        host_system_name = "nothing",
-        target_system_name = "nothing",
-        target_cpu = "nothing",
-        target_libc = "nothing",
-        cc_target_os = "nothing",
-        compiler = "nothing",
-        abi_version = "nothing",
-        abi_libc_version = "nothing",
+        builtin_sysroot = "external/athena_toolchain_%s/frc2021/roborio/arm-frc2021-linux-gnueabi" % ctx.attr._build_os,
+        toolchain_identifier = "athena_cc_toolchain_%s" % ctx.attr._build_os,
+        host_system_name = "local",
+        target_system_name = "linux-gnueabi",
+        target_cpu = "arm",
+        target_libc = "glibc-2.24",
+        compiler = "arm-frc2021-linux-gnueabi-gcc-7.3.0",
+        abi_version = "unknown",
+        abi_libc_version = "unknown",
         tool_paths = tool_paths,
         features = features,
     )
 
 athena_cc_toolchain_linux64_config = rule(
     implementation = _impl,
+    attrs = {
+        "_build_os": attr.string(default="linux64")
+    },
     provides = [CcToolchainConfigInfo],
+)
+
+athena_cc_toolchain_win32_config = rule(
+    implementation = _impl,
+    attrs = {
+        "_build_os": attr.string(default="win32")
+    },
+    provides = [CcToolchainConfigInfo]
 )

@@ -11,7 +11,7 @@ platform(
     name = "athena",
     constraint_values = [
         "@platforms//os:linux",
-        "@platforms//cpu:arm",
+        "@platforms//cpu:armv7",  # Z-7020 is armv7-a (Cortex-A9) but this is as close as we can get
         ":roborio"
     ]
 )

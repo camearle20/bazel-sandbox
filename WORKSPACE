@@ -11,7 +11,9 @@ http_archive(
 )
 
 http_archive(
-    name = ""
+    name = "athena_toolchain_win32",
+    build_file = "@//:build_tools/toolchain/athena_toolchain_win32_repo.BUILD",
+    urls = ["https://github.com/wpilibsuite/roborio-toolchain/releases/download/v2021-2/FRC-2021-Windows-Toolchain-7.3.0.zip"],
 )
 
 # This tells Bazel to add our toolchains to the list of options

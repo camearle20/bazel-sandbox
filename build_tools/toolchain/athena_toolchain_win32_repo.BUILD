@@ -23,7 +23,7 @@ cc_toolchain(
 
 toolchain(
     name = "athena-cc-toolchain-win32",
-    exec_compatible_with = ["@platforms//os:windows", "@platforms//cpu:x86_32"],
+    exec_compatible_with = ["@platforms//os:windows"],
     target_compatible_with = ["@//build_tools/platforms:roborio"],
     toolchain = ":athena-cc-toolchain-win32-def",
     toolchain_type = "@bazel_tools//tools/cpp:toolchain_type",

@@ -16,7 +16,7 @@ toolchain(
 
 toolchain(
     name = "athena-cc-toolchain-macos64",
-    exec_compatible_with = ["@platforms//os:macos", "@platforms//cpu:x86_64"],
+    exec_compatible_with = ["@platforms//os:macos"],
     target_compatible_with = ["//build_tools/platforms:roborio"],
     toolchain = "@athena_toolchain_macos64_files//:athena-cc-toolchain-macos64-def",
     toolchain_type = "@bazel_tools//tools/cpp:toolchain_type",

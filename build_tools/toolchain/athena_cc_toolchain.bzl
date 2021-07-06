@@ -75,8 +75,8 @@ def _impl(ctx):
 
     return cc_common.create_cc_toolchain_config_info(
         ctx = ctx,
-        builtin_sysroot = "external/athena_toolchain_%s/frc2021/roborio/arm-frc2021-linux-gnueabi" % ctx.attr._build_os,
-        toolchain_identifier = "athena_cc_toolchain_%s" % ctx.attr._build_os,
+        builtin_sysroot = "external/athena_toolchain_%s_files/frc2021/roborio/arm-frc2021-linux-gnueabi" % ctx.attr.toolchain_host,
+        toolchain_identifier = "athena_cc_toolchain_%s" % ctx.attr.toolchain_host,
         host_system_name = "local",
         target_system_name = "linux-gnueabi",
         target_cpu = "arm",
@@ -88,26 +88,10 @@ def _impl(ctx):
         features = features,
     )
 
-athena_cc_toolchain_linux64_config = rule(
+athena_cc_toolchain_config = rule(
     implementation = _impl,
     attrs = {
-        "_build_os": attr.string(default="linux64")
+        "toolchain_host": attr.string()
     },
     provides = [CcToolchainConfigInfo],
-)
-
-athena_cc_toolchain_win32_config = rule(
-    implementation = _impl,
-    attrs = {
-        "_build_os": attr.string(default="win32")
-    },
-    provides = [CcToolchainConfigInfo]
-)
-
-athena_cc_toolchain_macos64_config = rule(
-    implementation = _impl,
-    attrs = {
-        "_build_os": attr.string(default="macos64")
-    },
-    provides = [CcToolchainConfigInfo]
 )
